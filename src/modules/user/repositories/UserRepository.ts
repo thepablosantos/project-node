@@ -21,7 +21,7 @@ class UserRepository {
                         if (error) {
                             return response.status(400).json(error)
                         }
-                        return response.status(200).json({ success: true });
+                        return response.status(200).json({ message: 'User created successfully' });
                     }
                 )
             })
@@ -51,7 +51,7 @@ class UserRepository {
                                 id: results[0].user_id,
                                 email: results[0].email,
                             }, 'secret', { expiresIn: '1h' })
-                            return response.status(200).json({ token: token })
+                            return response.status(200).json({ token: token, message: 'User logged in successfully' })
                         }
                     })
                 }
