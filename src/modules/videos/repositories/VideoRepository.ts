@@ -24,7 +24,7 @@ class VideoRepository {
     }   
 
     getVideos(request: Request, response: Response){
-        const { user_id } = request.body;
+        const { user_id } = request.params;
         pool.getConnection((err: any, connection: any) => {
 
             connection.query(
@@ -41,7 +41,24 @@ class VideoRepository {
         })
     }
 
-}
+    searchVideos(request: Request, response: Response){
+        const { search } = request.query;
+        pool.getConnection((err: any, connection: any) => {
 
+            connection.query(
+                'SELECT * FROM videos WHERE title LIKE ?',
+                [`%${search}%`],
+                (error: any, results: any, fields: any) => {
+                    connection.release();
+                    if (error) {
+                        return response.status(400).json({ error: 'error to get videos' })
+                    }
+                    return response.status(200).json({message: 'Videos fetched successfully', videos: results })
+                }
+            )
+        })
+
+}
+}
 
 export { VideoRepository };
