@@ -8,4 +8,8 @@ videosRoutes .post('/create-video', (request, response) => {
   videoRepository.create(request, response);
 })
 
+videosRoutes .get('/get-videos', (request, response) => {
+  videoRepository.getVideos(request, response);
+})
+
 export {videosRoutes };

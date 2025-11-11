@@ -23,6 +23,24 @@ class VideoRepository {
             })
     }   
 
+    getVideos(request: Request, response: Response){
+        const { user_id } = request.body;
+        pool.getConnection((err: any, connection: any) => {
+
+            connection.query(
+                'SELECT * FROM videos WHERE user_id = ?',
+                [user_id],
+                (error: any, results: any, fields: any) => {
+                    connection.release();
+                    if (error) {
+                        return response.status(400).json({ error: 'error to get videos' })
+                    }
+                    return response.status(200).json({message: 'Videos fetched successfully', videos: results })
+                }
+            )
+        })
+    }
+
 }
 
 
