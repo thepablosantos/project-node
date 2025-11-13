@@ -1,6 +1,0 @@
-Valeu pela dica! 👍
-
-Realmente faz muito sentido validar antes de chegar no banco. Vou implementar validação de campos e melhorar o tratamento de erros pra dar mensagens mais claras pro usuário.
-
-Obrigado pelo feedback! Vou postar a implementação nos próximos updates! 🚀
-
